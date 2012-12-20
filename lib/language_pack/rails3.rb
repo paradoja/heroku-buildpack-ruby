@@ -17,7 +17,7 @@ class LanguagePack::Rails3 < LanguagePack::Rails2
 
   def default_process_types
     # let's special case thin here
-    web_process = "bundle exec rails server -p $PORT"
+    web_process = "bundle exec rails server -R config.ru -p $PORT"
 
     super.merge({
       "web" => web_process,

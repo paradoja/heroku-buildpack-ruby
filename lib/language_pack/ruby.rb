@@ -363,7 +363,7 @@ ERROR
     log("bundle") do
       bundle_without = ENV["BUNDLE_WITHOUT"] || "development:test"
       log(Dir.pwd)
-      log()ENV['BUNDLE_GEMFILE'])
+      log(ENV['BUNDLE_GEMFILE'])
       bundle_command = "bundle install --without #{bundle_without} --path vendor/bundle --binstubs vendor/bundle/bin"
 
       unless File.exist?("Gemfile.lock")

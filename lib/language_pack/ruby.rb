@@ -514,6 +514,7 @@ params = CGI.parse(uri.query || "")
   # @note it sets a flag, so the path can only be loaded once
   def add_bundler_to_load_path
     return if @bundler_loadpath
+    set_env_override('BUNDLE_GEMFILE', 'web-services/Gemfile')
     $: << File.expand_path(Dir["#{slug_vendor_base}/gems/bundler*/lib"].first)
     @bundler_loadpath = true
   end

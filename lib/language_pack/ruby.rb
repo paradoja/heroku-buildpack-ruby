@@ -47,19 +47,18 @@ class LanguagePack::Ruby < LanguagePack::Base
   end
 
   def compile
-    Dir.chdir(build_path) do
-      remove_vendor_bundle
-      install_ruby
-      install_jvm
-      setup_language_pack_environment
-      setup_profiled
-      allow_git do
-        install_language_pack_gems
-        build_bundler
-        create_database_yml
-        install_binaries
-        run_assets_precompile_rake_task
-      end
+    Dir.chdir(build_path)
+    remove_vendor_bundle
+    install_ruby
+    install_jvm
+    setup_language_pack_environment
+    setup_profiled
+    allow_git do
+      install_language_pack_gems
+      build_bundler
+      create_database_yml
+      install_binaries
+      run_assets_precompile_rake_task
     end
   end
 
@@ -363,7 +362,8 @@ ERROR
   def build_bundler
     log("bundle") do
       bundle_without = ENV["BUNDLE_WITHOUT"] || "development:test"
-      ENV['BUNDLE_GEMFILE'] = "#{Dir.pwd}/Gemfile"
+      log(Dir.pwd)
+      log()ENV['BUNDLE_GEMFILE'])
       bundle_command = "bundle install --without #{bundle_without} --path vendor/bundle --binstubs vendor/bundle/bin"
 
       unless File.exist?("Gemfile.lock")

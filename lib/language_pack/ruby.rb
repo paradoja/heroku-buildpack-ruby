@@ -360,9 +360,8 @@ ERROR
 
   # runs bundler to install the dependencies
   def build_bundler
-    topic(Dir.pwd)
-    topic(ENV['BUNDLE_GEMFILE'])
     log("bundle") do
+      set_env_override('BUNDLE_GEMFILE', 'web-services/Gemfile')
       bundle_without = ENV["BUNDLE_WITHOUT"] || "development:test"
       bundle_command = "bundle install --without #{bundle_without} --path vendor/bundle --binstubs vendor/bundle/bin"
 
